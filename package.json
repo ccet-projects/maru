@@ -1,0 +1,37 @@
+{
+  "name": "maru",
+  "version": "1.0.0",
+  "description": "Minimalistic framework for ccet projects",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./errors.js": "./lib/errors.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ccet-projects/maru.git"
+  },
+  "author": "Anna Agte <matiasrustagte@gmail.com>",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "pino": "^8.15.1",
+    "rc": "^1.2.8"
+  },
+  "devDependencies": {
+    "eslint": "x",
+    "eslint-config-maru": "github:ccet-projects/eslint-config-maru",
+    "eslint-plugin-import": "x"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "maru"
+    ]
+  }
+}
