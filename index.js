@@ -4,7 +4,7 @@ import fs from 'node:fs';
 
 import Application from './lib/Application.js';
 
-export default function (currentPath, components) {
+export default function (currentPath, components, runtimeConfig) {
   let appDir = '';
 
   const currentDir = path.dirname(fileURLToPath(currentPath));
@@ -16,5 +16,5 @@ export default function (currentPath, components) {
     throw Error('Не получается определить папку приложения');
   }
 
-  return new Application({ path: appDir, components });
+  return new Application({ ...runtimeConfig, path: appDir, components });
 };
