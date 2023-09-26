@@ -1,19 +1,29 @@
-import test from 'node:test';
+import { describe, it, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import maru from '../index.js';
+import maru from '../index.js'; // eslint-disable-line import/no-relative-packages
 
-await test('default settings', async () => {
-  const app = maru(import.meta.url, [], { logs: false });
-  await app.start();
-  const hasService = !!app.services.example;
-  await app.stop();
-  assert.ok(hasService);
-});
+describe('start and stop', () => {
+  let app = null;
 
-await test('without api', async () => {
-  const app = maru(import.meta.url, [], { logs: false, api: false });
-  await app.start();
-  const hasService = !!app.services.example;
-  await app.stop();
-  assert.ok(!hasService);
+  it('default settings', async () => {
+    app = maru(import.meta.url);
+    try {
+      await app.start();
+      assert.ok(app.info);
+      assert.equal(app.name, 'maru-test');
+      assert.ok(app.services.example);
+    } finally {
+      await app.stop();
+    }
+  });
+
+  it('bare skeleton', async () => {
+    app = maru(import.meta.url, [], { logs: false, api: false });
+    try {
+      await app.start();
+      assert.ok(!app.services.example);
+    } finally {
+      await app.stop();
+    }
+  });
 });
