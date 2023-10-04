@@ -11,7 +11,7 @@ describe('start and stop', () => {
       await app.start();
       assert.ok(app.info);
       assert.equal(app.name, 'maru-test');
-      assert.ok(app.services.example);
+      assert.ok(app.services.main);
     } finally {
       await app.stop();
     }
@@ -21,7 +21,7 @@ describe('start and stop', () => {
     app = maru(import.meta.url, [], { logs: false, api: false });
     try {
       await app.start();
-      assert.ok(!app.services.example);
+      assert.ok(!app.services.main);
     } finally {
       await app.stop();
     }
