@@ -10,10 +10,10 @@ export default function (currentPath, components, runtimeConfig) {
   const currentDir = path.dirname(fileURLToPath(currentPath));
   if (fs.existsSync(path.resolve(currentDir, 'api'))) {
     appDir = currentDir;
-  } else if (currentDir.has('/api/')) {
+  } else if (currentDir.includes('/api/')) {
     appDir = currentDir.slice(0, currentDir.lastIndexOf('/api/'));
   } else {
-    throw Error('Не получается определить папку приложения');
+    appDir = currentDir;
   }
 
   return new Application({ ...runtimeConfig, path: appDir, components });
