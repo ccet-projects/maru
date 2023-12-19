@@ -12,7 +12,7 @@
   "type": "module",
   "exports": {
     ".": "./index.js",
-    "./errors.js": "./lib/errors.js",
+    "./APIError.js": "./lib/APIError.js",
     "./Service.js": "./lib/Service.js"
   },
   "scripts": {
